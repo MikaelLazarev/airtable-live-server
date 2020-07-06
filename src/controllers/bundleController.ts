@@ -16,7 +16,7 @@ import { configure, getLogger, Logger } from "log4js";
 import { Container, Inject } from "typedi";
 import { fileUploadOptions } from "../config/multer";
 import { BundlesService } from "../services/bundleService";
-import { BundleCreateDTO } from "../payload/bundle";
+import { BlockUpdateDTO } from "../payload/bundle";
 import { BundleNotFoundError } from "../errors/bundle";
 
 @JsonController("/api/bundles")
@@ -50,18 +50,19 @@ export class BundlesController {
     files: Array<Express.Multer.File>
   ) {
     this._logger.debug(files);
-
-    return {
-      url: await this._service.uploadImage(
+    const result =  await this._service.uploadImage(
         id,
         files[0].path,
         files[0].filename
-      ),
-    };
+        );
+
+    console.log(result)
+    return {url: result};
   }
 
-  @Put("/:id")
-  update(@Param("id") id: string, @Body() dto: BundleCreateDTO) {
+  @Put("/block/:id")
+  update(@Param("id") id: string, @Body() dto: BlockUpdateDTO) {
+    console.log(dto)
     return this._service.update(id, dto);
   }
 }

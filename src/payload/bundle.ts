@@ -1,7 +1,10 @@
 import { IsNotEmpty } from "class-validator";
 
-export class BundleCreateDTO {
+export class BlockUpdateDTO {
     @IsNotEmpty()
-    bundle: string;
+    index: number
+
+    @IsNotEmpty()
+    block: string;
 
 }

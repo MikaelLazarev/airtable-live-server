@@ -1,12 +1,11 @@
-import {Column,  Entity, PrimaryColumn, } from "typeorm";
-
+import {Column, Entity, OneToMany, PrimaryColumn} from "typeorm";
+import {Block} from "./block";
 
 @Entity()
 export class Bundle {
-    @PrimaryColumn()
-    id: string;
+  @PrimaryColumn()
+  id: string;
 
-    @Column()
-    bundle: string;
-
+  @OneToMany((type) => Block, block => block.bundle)
+  blocks: Block[];
 }
