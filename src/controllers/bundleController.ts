@@ -1,8 +1,5 @@
 import {
-  Authorized,
   Body,
-  CurrentUser,
-  Delete,
   Get,
   JsonController,
   OnUndefined,
@@ -10,7 +7,6 @@ import {
   Post,
   Put,
   UploadedFiles,
-  Req,
 } from "routing-controllers";
 import { configure, getLogger, Logger } from "log4js";
 import { Container, Inject } from "typedi";
